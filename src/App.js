@@ -24,6 +24,7 @@ function App() {
       setData(newData);
     }
   };
+
   const createNewPost = async (title, body) => {
     const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
@@ -33,7 +34,6 @@ function App() {
       body: JSON.stringify({ title, body }),
     });
     const newData = await res.json();
-    console.log(newData);
     setData([newData, ...data]);
   };
 
@@ -143,8 +143,8 @@ function App() {
         </Button>
       </div>
       <ul>
-        {data?.map((d) => (
-          <li key={d.id}>
+        {data?.map((d, index) => (
+          <li key={index}>
             <span style={{ display: "block", fontWeight: "700" }}>
               Title: {d.title}
             </span>
